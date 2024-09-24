@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test</title>
+    <style>
+    </style>
+</head>
+<body>
+    <canvas></canvas>
+
+    <script>
+        const drawOverlay=document.querySelector("canvas");
+        const nuhuhShadow=50,nuhuhCorner=70;
+        drawOverlay.width=400;
+        drawOverlay.height=300;
+
+        const ctx=drawOverlay.getContext("2d");
+        const put=ctx.getImageData(0, 0, drawOverlay.width, drawOverlay.height);
+        const img=put.data;
+        const dims=[drawOverlay.width, drawOverlay.height];
+
+        for(let dir1=1,i=0; dir1>=-1; dir1-=2,i++){
+            for(let dir2=1,j=0; dir2>=-1; dir2-=2,j++){
+                const extremes=[[0,dims[0]][i],[0,dims[1]][j]];
+                const centers=[extremes[0]+dir1*(nuhuhCorner+nuhuhShadow),extremes[1]+dir2*(nuhuhCorner+nuhuhShadow)];
+
+                for(let k=extremes[0]; k!=centers[0]; k+=dir1){
+                    for(let l=extremes[1]; l!=centers[1]; l+=dir2){
+                        const dist=Math.sqrt((k-centers[0])**2+(l-centers[1])**2);
+                        let transp;
+                        if(dist<=nuhuhCorner){
+                            transp=0;
+                        }
+                        else if(dist>=nuhuhCorner+nuhuhShadow){
+                            transp=255;
+                        }
+                        else{
+                            transp=Math.round(255*(dist-nuhuhCorner)/nuhuhShadow);
+                        }
+                        const pixel=[0,0,0,transp];
+                        for(let m=0; m<4; m++){
+                            img[4*(l*drawOverlay.width+k)+m]=pixel[m];
+                        }
+                    }
+                }
+
+                const startCenter=[0,dims[j]][i]+(nuhuhCorner+nuhuhShadow)*dir1;
+                const endCenter=dims[j]-startCenter;
+                if((startCenter>=endCenter+dir1)==1-i) continue;
+                const startEdge=[0,0,dims[1],dims[0]][2*i+j];
+                const endEdge=startEdge+dir1*nuhuhShadow;
+
+                for(let k=startEdge; k!=endEdge; k+=dir1){
+                    const transp=Math.round(255*(1-Math.abs(k-startEdge)/nuhuhShadow));
+                    const pixel=[0,0,0,transp];
+                    for(let l=startCenter; l!=endCenter+dir1; l+=dir1){
+                        if(k%50==0 && l%50==0){console.log(k,l);}
+                        for(let m=0; m<4; m++){
+                            if(j==1) img[4*(l*drawOverlay.width+k)+m]=pixel[m];
+                            else img[4*(k*drawOverlay.width+l)+m]=pixel[m];
+                        }
+                    }
+                }
+            }
+        }
+
+        ctx.putImageData(put,0,0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="arena.css">
+        <title>Inscrição</title>
+    </head>
+    <body id="important">
+        <div id="game">
+            <div class="cards_wrapper">
+                <div class="cards_wrapper_wrapper">
+                    <div class="act1stuff">
+                        <div class="heart">30</div>
+                        <div class="items question" id="oppItems">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div id="oppCards" class="hand" style="--margin:5px;"></div>
+                </div>
+            </div>
+            <div id="board">
+                <div id="gs_wrapper">
+                    <div id="scale_and_heart">
+                        <!-- <div class="heart">30</div> -->
+                        <div id="scale_wr">
+                            <div id="scale_ptr">
+                                <div>
+                                    <div id="triangle"></div>
+                                </div>
+                                <span>0</span>
+                            </div>
+                            <canvas id="scales" height="200" width="55"></canvas>
+                        </div>
+                        <!-- <div class="heart">30</div> -->
+                    </div>
+                    <div id="game_stuff">
+                        <div class="res" style="border-bottom-left-radius: 11px; border-bottom-right-radius: 11px;">
+                            <div id="oppBones">
+                                <div class="boneToken"></div>
+                                <span>x0</span>
+                            </div>
+                            <div id="oppEnergy">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                            </div>
+                        </div>
+                        <div id="actions">
+                            <div id="resign" class="selectable">
+                                <img src="icons/resign.png">
+                                <div>
+                                    <p>Tem certeza?</p>
+                                    <button>Confirmar</button>
+                                </div>
+                            </div>
+                            <div id="hammer">
+                                <img src="icons/hammer.png">
+                            </div>
+                            <div id="bell">
+                                <img src="icons/bell.png">
+                            </div>
+                        </div>
+                        <div class="res" style="border-top-left-radius: 11px; border-top-right-radius: 11px;">
+                            <div id="myEnergy">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                                <img src="icons/energy_empty.png">
+                            </div>
+                            <div id="myBones">
+                                <div class="boneToken"></div>
+                                <span>x0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="br_wrapper">
+                    <div class="board_row">
+                        <div id="oppBoard" class="spaces">
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                        </div>
+                        <div id="oppDecks" class="spaces">
+                            <div><div style="position: relative;">
+                                <canvas class="shadow" width="104" height="132"></canvas>
+                                <div class="actual"></div>
+                            </div></div>
+                            <div><div style="position: relative;">
+                                <canvas class="shadow" width="104" height="132"></canvas>
+                                <div class="actual"></div>
+                            </div></div>
+                        </div>
+                    </div>
+                    <div class="board_row">
+                        <div id="myBoard" class="spaces">
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                            <div><div><div class="space"></div><div class="overlays"></div></div></div>
+                        </div>
+                        <div id="myDecks" class="spaces">
+                            <div><div style="position: relative;">
+                                <canvas class="shadow" width="104" height="132"></canvas>
+                                <div class="actual">
+                                </div>
+                            </div></div>
+                            <div><div style="position: relative;">
+                                <canvas class="shadow" width="104" height="132"></canvas>
+                                <div class="actual">
+                                </div>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cards_wrapper">
+                <div class="cards_wrapper_wrapper">
+                    <div class="act1stuff">
+                        <div class="heart">30</div>
+                        <div class="items" id="myItems">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div id="myCards" class="hand" style="--margin:5px;"></div>
+                </div>
+            </div>
+            <div id="tutorWrapper">
+                <div id="tutor"></div>
+            </div>
+            <div id="cut_the_bs" class="modalBG" style="z-index: 5;">
+                <div>
+                    <p>Vamos poupar nosso tempo.</p>
+                    <p style="display: flex; align-items: center;
+                    justify-content: center;"><button>
+                        <img src="icons/bone.png"> x400
+                    </button></p>
+                </div>
+            </div>
+            <div id="nuhuh" class="nuhuh">
+                <div class="items nobg" id="floatingLens">
+                    <div><img src="items/lens.webp"></div>
+                    <div><img src="items/lens.webp"></div>
+                    <div><img src="items/lens.webp"></div>
+                </div>
+            </div>
+            <div id="nuhuhSniper" class="nuhuh"></div>
+            <div id="fullShadow" class="nuhuh"></div>
+        </div>
+        <div id="menu">
+            <div>
+                <h1><span>Inscrição</span></h1>
+                <div class="opt"><span>Criar Partida</span></div>
+                <div class="opt"><span>Entrar na Partida</span></div>
+                <div class="opt"><span>Editar Deck</span></div>
+                <div class="opt"></div>
+            </div>
+            <div class="modalBG" id="pregame">
+                <div style="padding: 0;">
+                    <div id="act_sel">
+                        <h2 style="font-size: 20px;">
+                            <span>Classic</span>
+                            <span class="selectedAct">Extended</span>
+                            <span>Draft</span>
+                            <canvas class="close ret" height="34" width="34" style="width: 26px;"></canvas>
+                        </h2>
+                    </div>
+                    <div id="configs" class="a2">
+                        <p>Nome da sala: <input id="name" style="width: 80px;"></p>
+                        <p class="a2">Seu deck: <span class="deckSel"></span> </p>
+                        <p class="a1">Vida total: <input id="hp" type="number" value="20" min="1" max="50" style="width: 40px;"> </p>
+                        <p>Limite da balança: <input id="sc" type="number" value="8" data-latent="5" min="1" max="16" style="width: 40px;"> </p>
+                        <p>Cartas por turno: <input id="cpt" type="number" value="2" data-latent="1" min="1" max="3" style="width: 40px;"> </p>
+                        <button class="play">
+                            <span id="okSpan">Criar Partida</span>
+                            <span id="waitSpan">Esperando...</span>
+                        </button>
+                    </div>
+                    <div class="error hideError"></div>
+                </div>
+            </div>
+            <div class="modalBG" id="join">
+                <div style="min-width: 275px;">
+                    <div class="closePos" style="position: relative; right:-4px; top:-1px">
+                        <img id="refresh" src="icons/circle-arrow.svg" height="26" width="26" style="transform: rotate(10deg);">
+                        <canvas class="close ret" height="34" width="34" style="width: 26px; position: relative; top:-1px"></canvas>
+                    </div>
+                    <p>Seu deck: <span class="deckSel">
+                    </span> </p>
+                    <div id="fgWrapper">
+                        <div id="fgError" class="errorMsg">Desconectado</div>
+                        <div id="foundGames"></div>
+                    </div>
+                    <div class="error hideError"></div>
+                </div>
+            </div>
+        </div>
+        <div id="editor">
+            <div id="left">
+                <div id="deck_sel">
+                    <canvas class="ret" height="34" width="34"></canvas>
+                    <h2>Seus decks</h2>
+                    <div id="decks"></div>
+                </div>
+                <div id="edit">
+                    <div>
+                        <div id="header_parent">
+                            <header>
+                                <div>
+                                    <h3 contenteditable="true">Deck vazio</h3>
+                                    <img src="icons/pencil.svg" style="cursor: pointer; height:1em">
+                                </div>
+                                <div id="size_parent">
+                                    <div id="mode_parent">
+                                        <span id="mode">Extended</span>
+                                        <img src="icons/circle-arrow.svg" width="16" id="mode_switch">
+                                    </div>
+                                    <div class="size">0/20</div>
+                                </div>
+                            </header>
+                            <img src="icons/save.svg" width="30" id="save">
+                        </div>
+                        <div id="secondary">
+                            Deck secundário:&nbsp;
+                            <div id="sec">
+                                <img class="caret" src="icons/caret.svg">
+                                <canvas width="60" height="42"></canvas>
+                                <img class="caret" src="icons/caret.svg">
+                            </div>
+                        </div>
+                        <div id="wrap_cid">
+                            <div id="cards_in_deck"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right">
+                <div id="cards_wrapper">
+                    <img class="caret" src="icons/caret.svg">
+                    <img class="caret" src="icons/caret.svg">
+                    <div id="cards"></div>
+                </div>
+                <div id="filters">
+                    <div id="costFilter" class="all_inactive">
+                        <div class="slot cost">
+                            <img class="caret" src="icons/caret.svg">
+                            <img class="caret" src="icons/caret.svg">
+                            <div id="cost_type"></div>
+                        </div>
+                        <div class="slot cost">
+                            <img class="caret" src="icons/caret.svg">
+                            <img class="caret" src="icons/caret.svg">
+                            <div id="cost_op"></div>
+                        </div>
+                        <div class="slot cost">
+                            <img class="caret" src="icons/caret.svg">
+                            <img class="caret" src="icons/caret.svg">
+                            <div id="cost_number"></div>
+                        </div>
+                        <img class="trash" src="icons/trash-icon.svg">
+                    </div>
+                    <div id="sigilFilter">
+                        <div class="slot"></div>
+                        <div class="slot"></div>
+                        <img class="trash" src="icons/trash-icon.svg">
+                    </div>
+                </div>
+            </div>
+            <div id="banned" class="modalBG">
+                <div>
+                    <h2>Banido!</h2>
+                    <p>A posse simultânea das cartas "Cat" e "Field Mice" no seu deck foi declarada ilegal por representar um risco de vida para os ratos.</p>
+                    <button class="play">Entendi</button>
+                </div>
+            </div>
+        </div>
+        <div id="card_choice">
+            <div id="pickWrapper">
+                <div id="pick3">
+                    <div id="ccShadow" class="nuhuh"></div>
+                    <div id="reroll">
+                        <img src="icons/circle-arrow.svg" height="43" id="arrow">
+                        <img src="icons/door.svg" height="43" id="door" style="display:none; margin-right:10px; margin-left:-5px">
+                        <span>x3</span>
+                    </div>
+                    <div class="cardSpace"></div>
+                    <div class="cardSpace"></div>
+                    <div class="cardSpace"></div>
+                </div>
+            </div>
+            <div id="arena_deck_cc"></div>
+            <div id="mopup"></div>
+        </div>
+        <div id="map">
+            <div class="backg">
+                <div id="spreadDeck"></div>
+                <div class="items">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="runStats">
+                    <div class="heart">30</div>
+                    <div class="runDeck">
+                        <div>
+                            <canvas class="shadow" width="104" height="132"></canvas>
+                            <div class="actual"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mcWrapper">
+                <div id="wwrraapp">
+                    <span>Esperando...</span>
+                    <div id="wrapwrapwrap"></div>
+                </div>
+            </div>
+            <div class="round">
+                <div class="runStats">
+                    <div class="runDeck">
+                        <div>
+                            <canvas class="shadow" width="104" height="132"></canvas>
+                            <div class="actual"></div>
+                        </div>
+                    </div>
+                    <div class="heart">30</div>
+                </div>
+                <div class="items question">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="modalBG" id="itemModal">
+                <div>
+                    <h2>
+                        <span>Escolha um item</span>
+                        <canvas class="close ret" height="34" width="34" style="width: 26px;"></canvas>
+                    </h2>
+                    <div id="itemPick"></div>
+                </div>
+            </div>
+        </div>
+        <div id="cardFactory">
+            <div>
+                <div id="cfStuff">
+                    <div>
+                        <div id="cardHolder">
+                            <div>
+                                <canvas></canvas>
+                                <input type="number" min="0" max="14" step="1" value="0" id="attack">
+                                <input type="number" min="1" max="25" step="1" value="1" id="health" dir="rtl">
+                                <div id="cost">
+                                    <canvas></canvas>
+                                </div>
+                            </div>
+                            <img id="splosh" src="map/splosh.png" width="160">
+                            <div id="controls">
+                                <span id="plus" style="line-height:9px; font-size: 18px; position:relative; z-index:1;"><span>++</span></span>
+                                <span id="minus" style="padding-bottom: 4px; line-height:5px; letter-spacing: 1px;"><span>  --</span></span>
+                                <img id="switch" src="icons/circle-arrow.svg" width="16" style="filter:invert(87%)">
+                            </div>
+                        </div>
+                        <div id="cardConfigs">
+                            <div id="sigilPick"></div>
+                            <div id="opmeter">
+                                <div>
+                                    <canvas width="71" height="71"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="create">Criar</button>
+                </div>
+            </div>
+            <div id="adcf"></div>
+        </div>
+        <div id="campfire">
+            <div id="cfImgs">
+                <img src="map/campfire_attack.jpg" id="camp_atk">
+                <img src="map/campfire_health.jpg" id="camp_hp">
+                <img src="map/lazy.png" id="xxxxx">
+                <div id="compound"><div id="cfCard"></div></div>
+                <div id="boneItem"><img src="items/bones.webp"></div>
+                <div id="btns">
+                    <button id="leave">
+                        <img src="icons/door.svg">
+                    </button>
+                    <button id="boost">
+                        <span>+</span>
+                        <div class="dice">
+                            <img src="icons/dice.png">
+                            <span>10</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div id="adcf2"></div>
+        </div>
+        <div id="tooltip"></div>
+        <div id="fade" class="fader"></div>
+        <div id="quit" style="display:none">
+            <img src="icons/door.svg" height="35">
+            <span>Sair</span>
+        </div>
+
+        <script defer src="socket.js"></script>
+        <script defer src="init.js"></script>
+        <script defer src="index.js"></script>
+        <script defer src="cards.js"></script>
+        <script defer src="cards_orig.js"></script>
+        <script defer src="deck.js"></script>
+        <script defer src="arena.js"></script>
+        <script defer src="items.js"></script>
+    </body>
+</html>

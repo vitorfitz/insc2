@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Rectangles</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="400"></canvas>
+    <script>
+        function drawRectangles() {
+            // Get the canvas element and its context
+            const canvas = document.getElementById('myCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle="#131010";
+            ctx.strokeStyle="#131010";
+            ctx.shadowColor="#131010";
+            ctx.shadowBlur=1.8;
+            ctx.lineWidth=1.8;
+            
+            // Define the dimensions of the big rectangle
+            const bigRectWidth = 28;
+            const bigRectHeight = 42;
+            const bigRectX = (canvas.width - bigRectWidth) / 2; // Center horizontally
+            const bigRectY = (canvas.height - bigRectHeight) / 2; // Center vertically
+            
+            // Draw the big rectangle
+            ctx.strokeRect(bigRectX, bigRectY, bigRectWidth, bigRectHeight);
+            
+            // Define the dimensions of the small rectangle
+            const smallRectWidth = 18;
+            const smallRectHeight = 6;
+            const smallRectX = (canvas.width - smallRectWidth) / 2; // Center horizontally
+            const smallRectY = bigRectY - smallRectHeight; // On top of the big rectangle
+            
+            // Draw the small rectangle
+            ctx.fillRect(smallRectX, smallRectY, smallRectWidth, smallRectHeight);
+        }
+        
+        // Call the function to draw the rectangles
+        drawRectangles();
+    </script>
+</body>
+</html>
